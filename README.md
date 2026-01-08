@@ -17,17 +17,16 @@ O projeto está organizado para execução sequencial:
 5.  `5-Consultas.sql`: Resolução das consultas (JOINs, Group By, Window Functions).
 6.  `6-Testes-e-Validacao.sql`: Alguns testes, com cenários e inserts aleatórios.
 
----
+# 🚀 Como Executar
 
-🚀 Como Executar
-Para reproduzir este projeto localmente, siga os passos abaixo utilizando o pgAdmin 4 ou o terminal psql.
+Para reproduzir este projeto localmente, siga os passos abaixo utilizando o **pgAdmin 4** ou o terminal **psql**.
 
-1. Criar o Banco de Dados
+### 1. Criar o Banco de Dados
 Primeiro, crie a base de dados onde as tabelas serão instaladas:
 
-SQL
-
+```sql
 CREATE DATABASE prova_banco_dados;
+
 2. Execução dos Scripts (Ordem Obrigatória)
 Os arquivos devem ser executados na sequência numérica definida para garantir a integridade dos relacionamentos e automações:
 
@@ -51,6 +50,6 @@ Para cada arquivo, você pode copiar o código e colar na janela, ou usar o atal
 Pressione F5 para executar.
 
 Por que seguir esta ordem?
-Trigger antes do Seed: Ao executar o script 4-Insercao-Dados.sql, o banco já conterá a Trigger ativa. Assim, quando os pagamentos forem inseridos, você poderá verificar imediatamente a tabela log_auditoria preenchida, demonstrando ao recrutador que a automação está funcionando perfeitamente.
+Trigger antes do Seed: Ao executar o script 4-Insercao-Dados.sql, o banco já conterá a Trigger ativa. Assim, quando os pagamentos forem inseridos, você poderá verificar imediatamente a tabela log_auditoria preenchida, demonstrando que a automação está funcionando perfeitamente.
 
 Schema antes de tudo: Sem as tabelas (Script 1), nenhum outro comando funcionará, pois todos dependem das referências de colunas e IDs.
