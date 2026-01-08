@@ -77,9 +77,9 @@ WITH metricas_pagamento AS (
         COUNT(s.id_solicitacao) AS qtd_aprovadas,
         -- Window Function: Soma total do departamento para cálculo de percentual
         SUM(SUM(p.valor_pago)) OVER(PARTITION BY f.departamento) as total_depto
-    FROM funcionarios f
-    JOIN solicitacoes s ON f.id_funcionario = s.id_funcionario
-    JOIN pagamentos p ON s.id_solicitacao = p.id_solicitacao
+    FROM tbfuncionario f
+    JOIN tbsolicitacao s ON f.id_funcionario = s.id_funcionario
+    JOIN tbpagamento p ON s.id_solicitacao = p.id_solicitacao
     WHERE s.status = 'PAGO'
     GROUP BY f.id_funcionario, f.nome, f.departamento
 ),
