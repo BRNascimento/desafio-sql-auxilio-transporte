@@ -68,21 +68,40 @@ Requisitos:
 - TOP 3 de cada departamento
 - Percentual com 2 casas decimais
 */
-WITH metricas AS (
+WITH metricas_pagamento AS (
+    -- Subconsulta (CTE) para consolidar os valores pagos por funcionário
     SELECT 
-        f.nome, f.departamento,
+        f.nome AS funcionario,
+        f.departamento,
         SUM(p.valor_pago) AS total_gasto,
         COUNT(s.id_solicitacao) AS qtd_aprovadas,
-        DENSE_RANK() OVER(PARTITION BY f.departamento ORDER BY SUM(p.valor_pago) DESC) as ranking,
+        -- Window Function: Soma total do departamento para cálculo de percentual
         SUM(SUM(p.valor_pago)) OVER(PARTITION BY f.departamento) as total_depto
-    FROM tbfuncionario f
-    JOIN tbsolicitacao s ON f.id_funcionario = s.id_funcionario
-    JOIN tbpagamento p ON s.id_solicitacao = p.id_solicitacao
+    FROM funcionarios f
+    JOIN solicitacoes s ON f.id_funcionario = s.id_funcionario
+    JOIN pagamentos p ON s.id_solicitacao = p.id_solicitacao
     WHERE s.status = 'PAGO'
     GROUP BY f.id_funcionario, f.nome, f.departamento
+),
+ranking_final AS (
+    -- Segunda CTE para calcular o ranking sem "pular" números (DENSE_RANK)
+    SELECT 
+        funcionario,
+        departamento,
+        total_gasto,
+        qtd_aprovadas,
+        DENSE_RANK() OVER(PARTITION BY departamento ORDER BY total_gasto DESC) as ranking,
+        total_depto
+    FROM metricas_pagamento
 )
 SELECT 
-    nome, departamento, total_gasto, qtd_aprovadas, ranking,
-    ROUND((total_gasto / total_depto) * 100, 2) as percentual_depto
-FROM metricas
-WHERE ranking <= 3;
+    funcionario,
+    departamento,
+    total_gasto,
+    qtd_aprovadas,
+    ranking,
+    -- Cálculo do percentual com 2 casas decimais
+    ROUND((total_gasto / total_depto) * 100, 2) || '%' as percentual_departamento
+FROM ranking_final
+WHERE ranking <= 3
+ORDER BY departamento, ranking;
