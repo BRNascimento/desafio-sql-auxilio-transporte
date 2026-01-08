@@ -27,29 +27,28 @@ Primeiro, crie a base de dados onde as tabelas serão instaladas:
 ```sql
 CREATE DATABASE prova_banco_dados;
 
-2. Execução dos Scripts (Ordem Obrigatória)
+### 2. Execução dos Scripts (Ordem Obrigatória)
 Os arquivos devem ser executados na sequência numérica definida para garantir a integridade dos relacionamentos e automações:
 
-1-Criacao-Tabelas.sql: Execute para criar a estrutura de tabelas e chaves estrangeiras.
+# 1-Criacao-Tabelas.sql: Execute para criar a estrutura de tabelas e chaves estrangeiras.
 
-2-Programacao-Trigger.sql: Execute para instalar a lógica de auditoria. É importante que este script rode antes da inserção de dados para que os logs de pagamentos já sejam registrados.
+# 2-Programacao-Trigger.sql: Execute para instalar a lógica de auditoria. É importante que este script rode antes da inserção de dados para que os logs de pagamentos já sejam registrados.
 
-3-Programacao-Proc.sql: Execute para criar a Stored Procedure de cancelamento.
+# 3-Programacao-Proc.sql: Execute para criar a Stored Procedure de cancelamento.
 
-4-Insercao-Dados.sql: Execute para popular o banco com funcionários, solicitações e pagamentos de teste.
+# 4-Insercao-Dados.sql: Execute para popular o banco com funcionários, solicitações e pagamentos de teste.
 
-5-Consultas.sql: Execute para visualizar os relatórios de aprovados, métricas mensais e o ranking de gastos.
+# 5-Consultas.sql: Execute para visualizar os relatórios de aprovados, métricas mensais e o ranking de gastos.
 
-6-Testes-e-Validacao.sql: Execute para validar o funcionamento da Procedure e conferir os logs gerados automaticamente.
+# 6-Testes-e-Validacao.sql: Execute para validar o funcionamento da Procedure e conferir os logs gerados automaticamente.
+
+
+# Por que seguir esta ordem?
+Trigger antes do Seed: Ao executar o script 4-Insercao-Dados.sql, o banco já conterá a Trigger ativa. Assim, quando os pagamentos forem inseridos, você poderá verificar imediatamente a tabela log_auditoria preenchida, demonstrando que a automação está funcionando perfeitamente.
+
+# Schema antes de tudo: Sem as tabelas (Script 1), nenhum outro comando funcionará, pois todos dependem das referências de colunas e IDs.
 
 💡 Dicas de Execução no pgAdmin 4
 Abra o Query Tool clicando com o botão direito sobre o banco prova_banco_dados.
-
 Para cada arquivo, você pode copiar o código e colar na janela, ou usar o atalho Ctrl + O para abrir o arquivo diretamente.
-
 Pressione F5 para executar.
-
-Por que seguir esta ordem?
-Trigger antes do Seed: Ao executar o script 4-Insercao-Dados.sql, o banco já conterá a Trigger ativa. Assim, quando os pagamentos forem inseridos, você poderá verificar imediatamente a tabela log_auditoria preenchida, demonstrando que a automação está funcionando perfeitamente.
-
-Schema antes de tudo: Sem as tabelas (Script 1), nenhum outro comando funcionará, pois todos dependem das referências de colunas e IDs.
