@@ -10,7 +10,9 @@ Este repositório contém a resolução da Prova de Proficiência em Banco de Da
 ## 📁 Estrutura do Projeto
 O projeto está organizado para execução sequencial:
 
-1.  `01_schema.sql`: Criação das tabelas e relacionamentos.
+1.  `1-Criacao-Tabelas.sql`: Criação das tabelas e relacionamentos.
+2.  `2-Programacao-Trigger.sql`: Trigger para registro de Log.
+3.  `3-Programacao-Proc.sql`: Procedure que atualiza o status para CANCELADO.
 2.  `02_seed.sql`: Inserção de dados fictícios para testes.
 3.  `03_questoes.sql`: Resolução das consultas (JOINs, Group By, Window Functions).
 4.  `04_programacao.sql`: Implementação do Trigger e da Stored Procedure.
