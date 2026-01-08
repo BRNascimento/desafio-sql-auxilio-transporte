@@ -1,6 +1,6 @@
 # Desafio Técnico: Sistema de Auxílio Transporte (PostgreSQL)
 
-Este repositório contém a resolução da Prova de Proficiência em Banco de Dados, focada em PostgreSQL 16. O projeto simula um sistema de gerenciamento de solicitações, pagamentos e auditoria de auxílio transporte.
+Este repositório contém a resolução da Prova de Proficiência em Banco de Dados, focada em PostgreSQL. O projeto simula um sistema de gerenciamento de solicitações, pagamentos e auditoria de auxílio transporte.
 
 ## 🛠️ Tecnologias Utilizadas
 * **Banco de Dados:** PostgreSQL 16
