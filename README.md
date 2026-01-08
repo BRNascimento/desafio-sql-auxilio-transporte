@@ -13,9 +13,9 @@ O projeto está organizado para execução sequencial:
 1.  `1-Criacao-Tabelas.sql`: Criação das tabelas e relacionamentos.
 2.  `2-Programacao-Trigger.sql`: Trigger para registro de Log.
 3.  `3-Programacao-Proc.sql`: Procedure que atualiza o status para CANCELADO.
-2.  `02_seed.sql`: Inserção de dados fictícios para testes.
-3.  `03_questoes.sql`: Resolução das consultas (JOINs, Group By, Window Functions).
-4.  `04_programacao.sql`: Implementação do Trigger e da Stored Procedure.
+4.  `4-Insercao-Dados.sql`: Inserção de dados fictícios para testes.
+5.  `5-Consultas.sql`: Resolução das consultas (JOINs, Group By, Window Functions).
+6.  `6-Testes-e-Validacao.sql`: Alguns testes, com cenários e inserts aleatórios.
 
 ---
 
